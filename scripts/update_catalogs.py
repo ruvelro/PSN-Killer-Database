@@ -143,13 +143,39 @@ def infer_update_version(row):
 
 def normalized_key(row):
     content_id = first_value(row, "Content ID")
+    url = pkg_url(row)
     if content_id:
-        return ("content_id", content_id)
+        return ("content_id_url", content_id, url) if is_url(url) else ("content_id_missing", content_id)
+    if is_url(url):
+        return ("url", url)
     title_id = first_value(row, "Title ID", "ID")
     region = first_value(row, "Region")
     name = re.sub(r"\s+", " ", first_value(row, "Name")).casefold()
     version = first_value(row, "Update Version", "Version")
-    return ("fallback", title_id, region, name, version)
+    return ("fallback", title_id, region, name, version, first_value(row, "RAP", "zRIF"))
+
+
+def content_id_with_url(row):
+    content_id = first_value(row, "Content ID")
+    return content_id if content_id and is_url(pkg_url(row)) else ""
+
+
+def compact_missing_duplicates(rows):
+    content_ids_with_url = {content_id_with_url(row) for row in rows if content_id_with_url(row)}
+    compacted = []
+    key_to_index = {}
+    for row in rows:
+        content_id = first_value(row, "Content ID")
+        if content_id and not is_url(pkg_url(row)) and content_id in content_ids_with_url:
+            continue
+        key = normalized_key(row)
+        existing_index = key_to_index.get(key)
+        if existing_index is None:
+            key_to_index[key] = len(compacted)
+            compacted.append(row)
+        elif usefulness(row) > usefulness(compacted[existing_index]):
+            compacted[existing_index] = {**compacted[existing_index], **{k: v for k, v in row.items() if not is_missing(v)}}
+    return compacted
 
 
 def usefulness(row):
@@ -175,27 +201,34 @@ def normalize_for_file(row, file_name):
 
 
 def merge_rows(current_rows, incoming_rows, file_name):
-    merged = [normalize_for_file(row, file_name) for row in current_rows]
-    key_to_rows = {}
-    for index, row in enumerate(merged):
-        key_to_rows.setdefault(normalized_key(row), []).append(index)
+    merged = compact_missing_duplicates([normalize_for_file(row, file_name) for row in current_rows])
+    key_to_index = {normalized_key(row): index for index, row in enumerate(merged)}
+    content_ids_with_url = {content_id_with_url(row) for row in merged if content_id_with_url(row)}
 
     added = 0
     improved = 0
     for row in incoming_rows:
         normalized = normalize_for_file(row, file_name)
+        content_id = first_value(normalized, "Content ID")
+        if content_id and not is_url(pkg_url(normalized)) and content_id in content_ids_with_url:
+            continue
         key = normalized_key(normalized)
-        indexes = key_to_rows.get(key, [])
-        if not indexes:
+        existing_index = key_to_index.get(key)
+        if existing_index is None:
             merged.append(normalized)
-            key_to_rows.setdefault(key, []).append(len(merged) - 1)
+            key_to_index[key] = len(merged) - 1
+            cid_with_url = content_id_with_url(normalized)
+            if cid_with_url:
+                content_ids_with_url.add(cid_with_url)
             added += 1
             continue
-        best_index = max(indexes, key=lambda idx: usefulness(merged[idx]))
-        if usefulness(normalized) > usefulness(merged[best_index]):
-            merged[best_index] = {**merged[best_index], **{k: v for k, v in normalized.items() if not is_missing(v)}}
+        if usefulness(normalized) > usefulness(merged[existing_index]):
+            merged[existing_index] = {**merged[existing_index], **{k: v for k, v in normalized.items() if not is_missing(v)}}
+            cid_with_url = content_id_with_url(merged[existing_index])
+            if cid_with_url:
+                content_ids_with_url.add(cid_with_url)
             improved += 1
-    return merged, added, improved
+    return compact_missing_duplicates(merged), added, improved
 
 
 def write_tsv(path, header, rows, file_name):
@@ -236,7 +269,7 @@ def update_one(file_name, pending=False):
     improved_total = 0
     source_reports = []
 
-    bases = [NPS_BASE_URL] if pending else [NPS_BASE_URL, VITAWIKI_BASE_URL]
+    bases = [NPS_BASE_URL]
     for base in bases:
         url = f"{base}/{'pending/' if pending and base == NPS_BASE_URL else ''}{source_name(base, file_name)}"
         try:

@@ -13,12 +13,11 @@ La app usa este repositorio como fuente primaria para evitar pérdidas cuando un
 
 ## Fuentes
 
-El Action consulta:
+El Action semanal consulta NoPayStation como fuente incremental:
 
 1. NoPayStation: `https://nopaystation.com/tsv/<nombre.tsv>`
-2. VitaWiki: `https://vitawiki.xyz/free/<nombre.tsv>`
 
-Para PSX, VitaWiki usa `PS1_GAMES.tsv`; el script lo mapea automáticamente a `PSX_GAMES.tsv`.
+VitaWiki se mantiene como mirror configurable en la app principal, pero no se fusiona automáticamente aquí para evitar duplicar catálogos equivalentes con claves distintas.
 
 ## Política Incremental
 
@@ -27,7 +26,7 @@ El actualizador no reemplaza a ciegas. Lee el TSV actual, descarga fuentes exter
 - `Content ID`, si existe.
 - Si no existe, `Title ID + Region + Name + Version`.
 
-Si una fila nueva no existía, se añade. Si ya existía, solo se reemplaza cuando aporta más información útil, por ejemplo URL real, licencia, SHA256, tamaño o fecha de modificación.
+Si una fila nueva no existía, se añade. Si ya existía, solo se reemplaza cuando aporta más información útil, por ejemplo URL real, licencia, SHA256, tamaño o fecha de modificación. Las filas duplicadas con el mismo `Content ID` y PKG ausente se eliminan cuando ya existe una alternativa descargable.
 
 Esto protege especialmente `PS3_UPDATES.tsv`, porque la fuente pública actual contiene muchas menos filas que el catálogo bueno preservado aquí.
 
