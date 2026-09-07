@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-31T10:49:05+00:00",
+  "updated_at": "2026-09-07T09:18:00+00:00",
   "catalogs": {
     "PS3_GAMES.tsv": {
       "rows": 7941,
@@ -132,7 +132,7 @@
     "PSP_DEMOS.tsv": {
       "rows": 172,
       "valid_urls": 172,
-      "added": 58,
+      "added": 0,
       "improved": 0,
       "sha256": "06fcedafdbb22bd41b7aeff8ce63548ba8e3b1ac2db3da9042cf32da8822e6ae",
       "sources": [
@@ -140,7 +140,7 @@
           "url": "https://nopaystation.com/tsv/PSP_DEMOS.tsv",
           "status": "ok",
           "rows": 172,
-          "added": 58,
+          "added": 0,
           "improved": 0
         }
       ]
@@ -292,18 +292,18 @@
   },
   "pending": {
     "PS3_GAMES.tsv": {
-      "rows": 1648,
-      "valid_urls": 1422,
-      "added": 3,
-      "improved": 3,
-      "sha256": "a76b44243c8432f69dd31bf3a39bda384ac65fd3e93d396c274ea4b404ccd71d",
+      "rows": 1650,
+      "valid_urls": 1424,
+      "added": 2,
+      "improved": 18,
+      "sha256": "4a6c6889076dc62319200415d34bce4f3ad02d472d21e8b8604cc23a3c5fc83a",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PS3_GAMES.tsv",
           "status": "ok",
-          "rows": 1989,
-          "added": 3,
-          "improved": 3
+          "rows": 1991,
+          "added": 2,
+          "improved": 18
         }
       ]
     },
@@ -340,65 +340,65 @@
       ]
     },
     "PS3_THEMES.tsv": {
-      "rows": 1281,
-      "valid_urls": 1276,
+      "rows": 1283,
+      "valid_urls": 1278,
       "added": 2,
-      "improved": 1,
-      "sha256": "e82c8314d73415c1eb0889e979896f222d75c9bc21276d459e3e0ab3961e1cd8",
+      "improved": 36,
+      "sha256": "c7202263467797ad85359ccc0bd5c51ce14b1766d60006f3043791cda53991d0",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PS3_THEMES.tsv",
           "status": "ok",
-          "rows": 1280,
+          "rows": 1282,
           "added": 2,
-          "improved": 1
+          "improved": 36
         }
       ]
     },
     "PS3_AVATARS.tsv": {
       "rows": 2784,
       "valid_urls": 2760,
-      "added": 1,
-      "improved": 0,
-      "sha256": "c5a4de4d2d54482ee8f2ca73b4ea1a1ceafbd14939d5b6f8f25ffe5b5a510d30",
+      "added": 0,
+      "improved": 19,
+      "sha256": "39adc0c8dc27e5411ccab94563fffb3d1f931a7a0248e3d990b6f4820cd2b54a",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PS3_AVATARS.tsv",
           "status": "ok",
           "rows": 2784,
-          "added": 1,
-          "improved": 0
+          "added": 0,
+          "improved": 19
         }
       ]
     },
     "PS3_DLCS.tsv": {
-      "rows": 16487,
-      "valid_urls": 16357,
-      "added": 52,
-      "improved": 1,
-      "sha256": "20bf86d89f24a01f6e6b432ec4b4a4cae63c354ee196c6f945cc224859814823",
+      "rows": 16503,
+      "valid_urls": 16373,
+      "added": 16,
+      "improved": 174,
+      "sha256": "c9f48f3779fa459724057b66b23b341e67d10120b0690ef6c1f443ef709f2816",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PS3_DLCS.tsv",
           "status": "ok",
-          "rows": 16613,
-          "added": 52,
-          "improved": 1
+          "rows": 16629,
+          "added": 16,
+          "improved": 174
         }
       ]
     },
     "PSP_GAMES.tsv": {
-      "rows": 1073,
-      "valid_urls": 1071,
-      "added": 0,
+      "rows": 1076,
+      "valid_urls": 1074,
+      "added": 3,
       "improved": 0,
-      "sha256": "0532216148261523fde488aa5df76523b1aef05d5a383e241534b24a3d374848",
+      "sha256": "3690202e32fa9a3840c1cd4463b8717201c4557329bd0ede07c8933f2f7f0f68",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PSP_GAMES.tsv",
           "status": "ok",
-          "rows": 896,
-          "added": 0,
+          "rows": 900,
+          "added": 3,
           "improved": 0
         }
       ]
@@ -454,7 +454,7 @@
     "PSP_DLCS.tsv": {
       "rows": 1694,
       "valid_urls": 1694,
-      "added": 18,
+      "added": 0,
       "improved": 0,
       "sha256": "e9899476e8b03eb645646e98a7a925e64c57c684f9df821c65d842469d848cca",
       "sources": [
@@ -462,7 +462,7 @@
           "url": "https://nopaystation.com/tsv/pending/PSP_DLCS.tsv",
           "status": "ok",
           "rows": 1926,
-          "added": 18,
+          "added": 0,
           "improved": 0
         }
       ]
@@ -470,16 +470,16 @@
     "PSV_GAMES.tsv": {
       "rows": 151,
       "valid_urls": 112,
-      "added": 1,
-      "improved": 1,
+      "added": 0,
+      "improved": 0,
       "sha256": "22c1ba4c02e58a79933a657ccf142b6a4f757787876c78f752e12a5f7ad65fb4",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PSV_GAMES.tsv",
           "status": "ok",
           "rows": 185,
-          "added": 1,
-          "improved": 1
+          "added": 0,
+          "improved": 0
         }
       ]
     },
@@ -502,7 +502,7 @@
     "PSV_DEMOS.tsv": {
       "rows": 10,
       "valid_urls": 9,
-      "added": 1,
+      "added": 0,
       "improved": 0,
       "sha256": "c30e8f3bcccc7bb7c9ed0bbbf470369f0cb665cdbefdf7c968790f1043a7b31e",
       "sources": [
@@ -510,7 +510,7 @@
           "url": "https://nopaystation.com/tsv/pending/PSV_DEMOS.tsv",
           "status": "ok",
           "rows": 10,
-          "added": 1,
+          "added": 0,
           "improved": 0
         }
       ]
@@ -519,7 +519,7 @@
       "rows": 198,
       "valid_urls": 198,
       "added": 0,
-      "improved": 3,
+      "improved": 0,
       "sha256": "4492ff213e30ac79f772c53098e0a81acec16b6a33f594f8eebe470dc24f43ca",
       "sources": [
         {
@@ -527,23 +527,23 @@
           "status": "ok",
           "rows": 343,
           "added": 0,
-          "improved": 3
+          "improved": 0
         }
       ]
     },
     "PSV_DLCS.tsv": {
       "rows": 4252,
       "valid_urls": 4173,
-      "added": 39,
-      "improved": 1,
+      "added": 0,
+      "improved": 0,
       "sha256": "7ce384be04dde9922a96886edf9ab8aa388571c6944f288c98acd3540de15bfa",
       "sources": [
         {
           "url": "https://nopaystation.com/tsv/pending/PSV_DLCS.tsv",
           "status": "ok",
           "rows": 5993,
-          "added": 39,
-          "improved": 1
+          "added": 0,
+          "improved": 0
         }
       ]
     },
